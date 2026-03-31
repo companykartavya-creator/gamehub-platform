@@ -9,22 +9,31 @@
 
   <h1>🎮 GameHub</h1>
 
-  <!-- Featured Game -->
+  <!-- Featured -->
   <div class="featured">
     <h2>🔥 Play Instantly</h2>
-    <a href="games/flappy.html">
-      <button>Play Now</button>
-    </a>
+    <button onclick="playGame('flappy.html')">Play Now</button>
+    <button onclick="randomGame()">🎲 Random Game</button>
   </div>
 
-  <!-- Game List -->
+  <!-- Games -->
   <h2>⚡ Quick Play</h2>
 
   <div class="game-list">
-    <div class="game-card">
-      <a href="games/flappy.html">Tap Escape 🐦</a>
+    <div class="game-card" onclick="playGame('flappy.html')">
+      🐦 Tap Escape
+    </div>
+
+    <div class="game-card" onclick="playGame('reaction.html')">
+      ⚡ Reaction Test
+    </div>
+
+    <div class="game-card" onclick="playGame('click.html')">
+      🖱 Speed Click
     </div>
   </div>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
