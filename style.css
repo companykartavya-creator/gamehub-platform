@@ -1,12 +1,13 @@
 body {
   font-family: Arial;
   text-align: center;
-  background: #0f172a;
+  background: linear-gradient(to right, #0f172a, #1e293b);
   color: white;
 }
 
 h1 {
   margin-top: 20px;
+  font-size: 40px;
 }
 
 .featured {
@@ -14,22 +15,36 @@ h1 {
 }
 
 button {
-  padding: 15px 25px;
-  font-size: 18px;
+  padding: 12px 20px;
+  margin: 10px;
+  font-size: 16px;
   background: #22c55e;
   border: none;
   border-radius: 10px;
   cursor: pointer;
 }
 
+button:hover {
+  background: #16a34a;
+}
+
 .game-list {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .game-card {
   background: #1e293b;
   padding: 20px;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 150px;
+  transition: 0.3s;
+}
+
+.game-card:hover {
+  transform: scale(1.1);
+  background: #334155;
 }
