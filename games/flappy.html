@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tap Escape</title>
+</head>
+
+<body style="margin:0; overflow:hidden; background:#70c5ce;">
+
+<canvas id="gameCanvas"></canvas>
+
+<script>
+let canvas = document.getElementById("gameCanvas");
+let ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let bird = { x: 100, y: 200, gravity: 0.5, lift: -10, velocity: 0 };
+let pipes = [];
+let score = 0;
+
+function drawBird() {
+  ctx.fillStyle = "yellow";
+  ctx.beginPath();
+  ctx.arc(bird.x, bird.y, 15, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawPipes() {
+  ctx.fillStyle = "green";
+  pipes.forEach(pipe => {
+    ctx.fillRect(pipe.x, 0, 50, pipe.top);
+    ctx.fillRect(pipe.x, canvas.height - pipe.bottom, 50, pipe.bottom);
+  });
+}
+
+function update() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  bird.velocity += bird.gravity;
+  bird.y += bird.velocity;
+
+  drawBird();
+
+  if (Math.random() < 0.02) {
+    let top = Math.random() * 200 + 50;
+    let bottom = 200;
+    pipes.push({ x: canvas.width, top, bottom });
+  }
+
+  pipes.forEach(pipe => {
+    pipe.x -= 3;
+
+    if (
+      bird.x < pipe.x + 50 &&
+      bird.x > pipe.x &&
+      (bird.y < pipe.top || bird.y > canvas.height - pipe.bottom)
+    ) {
+      alert("Game Over! Score: " + score);
+      location.reload();
+    }
+
+    if (pipe.x === bird.x) score++;
+  });
+
+  drawPipes();
+
+  requestAnimationFrame(update);
+}
+
+document.addEventListener("click", () => {
+  bird.velocity = bird.lift;
+});
+
+update();
+</script>
+
+</body>
+</html>
