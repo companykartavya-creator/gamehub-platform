@@ -7,33 +7,32 @@
 
 <body>
 
-  <h1>🎮 GameHub</h1>
+<h1>🎮 GameHub</h1>
 
-  <!-- Featured -->
-  <div class="featured">
-    <h2>🔥 Play Instantly</h2>
-    <button onclick="playGame('flappy.html')">Play Now</button>
-    <button onclick="randomGame()">🎲 Random Game</button>
-  </div>
+<!-- LOGIN -->
+<button onclick="login()">Login with Google</button>
+<p id="user"></p>
 
-  <!-- Games -->
-  <h2>⚡ Quick Play</h2>
+<!-- FEATURE -->
+<div class="featured">
+  <button onclick="playGame('flappy.html')">🔥 Play Now</button>
+  <button onclick="randomGame()">🎲 Random Game</button>
+</div>
 
-  <div class="game-list">
-    <div class="game-card" onclick="playGame('flappy.html')">
-      🐦 Tap Escape
-    </div>
+<!-- GAMES -->
+<h2>⚡ Games</h2>
+<div class="game-list">
+  <div class="game-card" onclick="playGame('flappy.html')">🐦 Tap Escape</div>
+  <div class="game-card" onclick="playGame('reaction.html')">⚡ Reaction</div>
+  <div class="game-card" onclick="playGame('click.html')">🖱 Click Speed</div>
+</div>
 
-    <div class="game-card" onclick="playGame('reaction.html')">
-      ⚡ Reaction Test
-    </div>
+<!-- LEADERBOARD -->
+<h2>🏆 Global Leaderboard</h2>
+<div id="leaderboard"></div>
+<button onclick="loadLeaderboard()">Refresh</button>
 
-    <div class="game-card" onclick="playGame('click.html')">
-      🖱 Speed Click
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
