@@ -8,6 +8,15 @@
 
 <canvas id="gameCanvas"></canvas>
 
+<div style="position:fixed; top:10px; left:10px; color:white; font-size:20px;">
+  Score: <span id="score">0</span> |
+  High Score: <span id="highScore">0</span>
+</div>
+
+<button onclick="restartGame()" style="position:fixed; bottom:20px; left:20px;">
+  🔁 Restart
+</button>
+
 <script>
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -15,23 +24,23 @@ let ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let bird = { x: 100, y: 200, gravity: 0.5, lift: -10, velocity: 0 };
-let pipes = [];
-let score = 0;
+let bird, pipes, score;
+
+function init() {
+  bird = { x: 100, y: 200, gravity: 0.5, lift: -10, velocity: 0 };
+  pipes = [];
+  score = 0;
+
+  document.getElementById("score").innerText = score;
+  document.getElementById("highScore").innerText =
+    localStorage.getItem("highScore") || 0;
+}
 
 function drawBird() {
   ctx.fillStyle = "yellow";
   ctx.beginPath();
   ctx.arc(bird.x, bird.y, 15, 0, Math.PI * 2);
   ctx.fill();
-}
-
-function drawPipes() {
-  ctx.fillStyle = "green";
-  pipes.forEach(pipe => {
-    ctx.fillRect(pipe.x, 0, 50, pipe.top);
-    ctx.fillRect(pipe.x, canvas.height - pipe.bottom, 50, pipe.bottom);
-  });
 }
 
 function update() {
@@ -56,22 +65,40 @@ function update() {
       bird.x > pipe.x &&
       (bird.y < pipe.top || bird.y > canvas.height - pipe.bottom)
     ) {
-      alert("Game Over! Score: " + score);
-      location.reload();
+      saveScore();
+      init();
     }
 
-    if (pipe.x === bird.x) score++;
+    if (pipe.x === bird.x) {
+      score++;
+      document.getElementById("score").innerText = score;
+    }
+
+    ctx.fillStyle = "green";
+    ctx.fillRect(pipe.x, 0, 50, pipe.top);
+    ctx.fillRect(pipe.x, canvas.height - pipe.bottom, 50, pipe.bottom);
   });
 
-  drawPipes();
-
   requestAnimationFrame(update);
+}
+
+function saveScore() {
+  let high = localStorage.getItem("highScore") || 0;
+  if (score > high) {
+    localStorage.setItem("highScore", score);
+  }
+}
+
+function restartGame() {
+  saveScore();
+  init();
 }
 
 document.addEventListener("click", () => {
   bird.velocity = bird.lift;
 });
 
+init();
 update();
 </script>
 
