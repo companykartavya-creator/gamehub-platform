@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body style="text-align:center; background:black; color:white;">
+
+<h1>Speed Click 🖱</h1>
+<h2 id="time">10</h2>
+<h2 id="score">0</h2>
+
+<button onclick="clickBtn()" style="padding:20px;">CLICK!</button>
+
+<script>
+let time = 10;
+let score = 0;
+
+function clickBtn() {
+  if (time > 0) {
+    score++;
+    document.getElementById("score").innerText = score;
+  }
+}
+
+let timer = setInterval(() => {
+  time--;
+  document.getElementById("time").innerText = time;
+
+  if (time <= 0) {
+    clearInterval(timer);
+    alert("Score: " + score);
+  }
+}, 1000);
+</script>
+
+</body>
+</html>

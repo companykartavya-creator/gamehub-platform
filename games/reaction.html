@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body style="text-align:center; background:black; color:white;">
+
+<h1>Reaction Test ⚡</h1>
+<h2 id="status">Wait for green...</h2>
+
+<script>
+let startTime;
+
+setTimeout(() => {
+  document.body.style.background = "green";
+  document.getElementById("status").innerText = "CLICK!";
+  startTime = new Date().getTime();
+}, Math.random() * 3000 + 2000);
+
+document.body.onclick = () => {
+  if (!startTime) return;
+
+  let reaction = new Date().getTime() - startTime;
+  alert("Your reaction: " + reaction + " ms");
+};
+</script>
+
+</body>
+</html>
