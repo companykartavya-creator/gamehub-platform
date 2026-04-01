@@ -5,14 +5,14 @@ import { getFirestore, doc, setDoc, getDocs, collection } from "https://www.gsta
 
 // 🔑 APNA CONFIG YAHAN PASTE KAR
 const firebaseConfig = {
-  apiKey: "PASTE",
-  authDomain: "PASTE",
-  projectId: "PASTE",
-  storageBucket: "PASTE",
-  messagingSenderId: "PASTE",
-  appId: "PASTE"
+  apiKey: "AIzaSyDAc_qZ24aJyeKmt4O0APmmKYaN8Ukf5xQ",
+  authDomain: "gamehub-29519.firebaseapp.com",
+  projectId: "gamehub-29519",
+  storageBucket: "gamehub-29519.firebasestorage.app",
+  messagingSenderId: "778815045155",
+  appId: "1:778815045155:web:5f05b137874eb0c4d77b96",
+  measurementId: "G-MLT78GCJ3Y"
 };
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
